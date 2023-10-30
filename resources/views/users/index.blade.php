@@ -20,6 +20,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Email</th>
                             <th scope="col">WhatsApp</th>
+                            <th scope="col">Data de nascimento</th>
                             <th scope="col"></th>
                           </tr>
                         </thead>
@@ -30,6 +31,7 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->whatsapp }}</td>
+                                    <td>{{ $user->birthdate }}</td>
                                     <td>
                                         <div class="d-flex">
                                             <a href="{{ route('users.edit', $user->id) }}" type="button" class="btn btn-info px-2 py-1">

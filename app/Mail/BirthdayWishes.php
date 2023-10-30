@@ -2,24 +2,27 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 
-class EmailVerification extends Mailable
+
+class BirthdayWishes extends Mailable
 {
     use Queueable, SerializesModels;
+
+    protected $user;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -28,7 +31,7 @@ class EmailVerification extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email Verification',
+            subject: 'Birthday Wishes',
         );
     }
 
@@ -38,7 +41,7 @@ class EmailVerification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.notification',
+            view: 'emails.birthdate-wishes',
         );
     }
 
@@ -52,16 +55,13 @@ class EmailVerification extends Mailable
         return [];
     }
 
-    /**
-     * Configure the e-mail message.
-     *
-     * @return $this
-     */
-    public function toMail($notifiable)
-{
-    return (new MailMessage)
-        ->line('Please click the button below to verify your email address.')
-        ->action('Verify Email Address', $this->verificationUrl($notifiable))
-        ->line('If you did not create an account, no further action is required.');
-}
+    public function build()
+    {
+        info($this->user->name);
+        return $this->view('emails.birthday-wishes')
+                    ->subject('A Bee Delivery deseja a você um Feliz Aniversário!')
+                    ->with([
+                        'name' => $this->user->name,
+                    ]);
+    }
 }

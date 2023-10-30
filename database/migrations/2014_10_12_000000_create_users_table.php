@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->string('whatsapp')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('whatsapp')->nullable();
+            $table->date('birthdate')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

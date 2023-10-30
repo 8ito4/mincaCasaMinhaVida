@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Console\Commands\SendBirthdayWishes;
 
 class Kernel extends HttpKernel
 {
@@ -65,4 +67,14 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    protected function schedule(Schedule $schedule)
+    {
+        // ...
+
+        // Agende a tarefa para enviar os desejos de aniversário às 6h da manhã
+        $schedule->command(SendBirthdayWishes::class)
+                ->everyMinute();
+    }
+
 }
