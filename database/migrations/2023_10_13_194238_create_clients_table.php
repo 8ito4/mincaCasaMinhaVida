@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('whatsapp');
+            $table->date('birthdate')->nullable();
             $table->string('adress');
             $table->rememberToken();
         });

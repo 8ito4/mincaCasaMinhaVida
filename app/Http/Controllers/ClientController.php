@@ -23,6 +23,7 @@ class ClientController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:clients'],
             'whatsapp' => ['required', 'numeric'],
             'adress' => ['required', 'string', 'max:255'],
+            'birthdate' => ['required', 'date'],
         ]);
 
         Client::create($validated);
@@ -43,7 +44,9 @@ class ClientController extends Controller
             'name' => ['required', 'string', 'min:3', 'max:255', ],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:clients,email,' . $client->id],
             'whatsapp' => ['required', 'numeric', ],
-            'adress' => ['required', 'string', 'max:255']
+            'adress' => ['required', 'string', 'max:255'],
+            'birthdate' => ['required', 'date'],
+
 
         ]);
 

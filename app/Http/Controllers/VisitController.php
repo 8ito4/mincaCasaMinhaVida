@@ -77,6 +77,7 @@ class VisitController extends Controller
     }
 
     public function update(Request $request, $id) {
+        // dd($request->method());
         $visit = Visit::findOrFail($id);
 
         $request->validate([

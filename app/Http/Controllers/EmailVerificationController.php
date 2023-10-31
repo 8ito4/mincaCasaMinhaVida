@@ -25,4 +25,15 @@ class EmailVerificationController extends Controller
 
         return redirect('/dashboard');
     }
+
+    public function resend(Request $request)
+    {
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->route('dashboard')->with('status', 'Seu e-mail já foi verificado.');
+        }
+
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('status', 'O e-mail de verificação foi reenviado.');
+    }
 }

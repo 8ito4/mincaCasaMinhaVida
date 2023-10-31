@@ -27,17 +27,30 @@ use Illuminate\Support\Facades\Mail;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('teste', function(){
-    $client = Client::find(3);
-    $visit = Visit::find(1);
+// Route::get('teste', function(){
+//     $client = Client::find(3);
+//     $visit = Visit::find(1);
         
-    if ($client) {
-        $clientEmail = $client->email;
-        dd(Mail::to($clientEmail)->send(new VisitNotification($visit)));
-    }
-});
+//     if ($client) {
+//         $clientEmail = $client->email;
+//         dd(Mail::to($clientEmail)->send(new VisitNotification($visit)));
+//     }
+// });
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
-Route::middleware(['auth'])->group(function () {
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+ 
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify/resend', [EmailVerificationController::class, 'resend'])->name('verification.resend');
+
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+
     // Rotas do dashboard
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -107,14 +120,6 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('{id}/update', [UserController::class, 'update'])->name('update');
         Route::delete('{id}', [UserController::class, 'delete'])->name('delete');
     });
-
-    // Rotas de verificação de e-mail
-    Route::get('/verify-email', function () {
-        $verificationUrl = 'google.com.br';
-        return view('auth.verify-email', compact('verificationUrl'));
-    })->name('verification.notice');
-    Route::post('/email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->name('verification.send');
-    Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
 });
 
 // require __DIR__.'/auth.php';

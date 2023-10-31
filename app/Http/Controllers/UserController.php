@@ -24,7 +24,7 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'whatsapp' => ['required', 'string', 'max:20'], 
-            'birthdate' => ['required', 'date'], 
+            
         ]);
 
         User::create($validated);
@@ -45,7 +45,7 @@ class UserController extends Controller
             'name' => ['required', 'string', 'min:3', 'max:255', ],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'whatsapp' => ['required', 'string', 'max:20'], 
-            'birthdate' => ['required', 'date'], 
+            
         ]);
 
         $user->update($validated);

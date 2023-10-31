@@ -43,6 +43,12 @@
                                 <input id="adress" type="text" class="form-control" name="adress" required>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="birthdate" class="col-md-4 col-form-label text-md-end">Data de Nascimento</label>
+                            <div class="col-md-6">
+                                <input id="birthdate" type="date" class="form-control" name="birthdate" required>
+                            </div>
+                        </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

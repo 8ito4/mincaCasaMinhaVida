@@ -20,6 +20,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col">Email</th>
                             <th scope="col">WhatsApp</th>
+                            <th scope="col">Data de Nascimento</th>
                             <th scope="col">Endereço</th>
                           </tr>
                         </thead>
@@ -30,6 +31,7 @@
                                     <td>{{ $client->name }}</td>
                                     <td>{{ $client->email }}</td>
                                     <td>{{ $client->whatsapp }}</td>
+                                    <td>{{ $client->birthdate }}</td>
                                     <td>{{ $client->adress }}</td>
                                     <td>
                                         <div class="d-flex">

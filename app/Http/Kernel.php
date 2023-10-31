@@ -70,11 +70,7 @@ class Kernel extends HttpKernel
 
     protected function schedule(Schedule $schedule)
     {
-        // ...
-
-        // Agende a tarefa para enviar os desejos de aniversário às 6h da manhã
-        $schedule->command(SendBirthdayWishes::class)
-                ->everyMinute();
+        $schedule->command('send:birthday-wishes')
+                ->everyMinute(); // Ajuste para everyMinute() para testar a cada minuto
     }
-
 }
