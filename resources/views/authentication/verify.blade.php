@@ -23,26 +23,26 @@
                             </div>
                         @endif
 
-                        <form method="POST" action="{{ route('verify.code') }}">
+                        <form method="POST" action="{{ route('validate') }}">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <input type="text" name="code[]" id="code1" class="form-control text-center" required maxlength="1" pattern="\d">
+                                    <input type="text" name="code1" id="code1" class="form-control text-center" required maxlength="1" pattern="\d">
                                 </div>
                                 <div class="form-group col">
-                                    <input type="text" name="code[]" id="code2" class="form-control text-center" required maxlength="1" pattern="\d">
+                                    <input type="text" name="code2" id="code2" class="form-control text-center" required maxlength="1" pattern="\d">
                                 </div>
                                 <div class="form-group col">
-                                    <input type="text" name= "code[]" id="code3" class="form-control text-center" required maxlength="1" pattern="\d">
+                                    <input type="text" name= "code3" id="code3" class="form-control text-center" required maxlength="1" pattern="\d">
                                 </div>
                                 <div class="form-group col">
-                                    <input type="text" name="code[]" id="code4" class="form-control text-center" required maxlength="1" pattern="\d">
+                                    <input type="text" name="code4" id="code4" class="form-control text-center" required maxlength="1" pattern="\d">
                                 </div>
                                 <div class="form-group col">
-                                    <input type="text" name="code[]" id="code5" class="form-control text-center" required maxlength="1" pattern="\d">
+                                    <input type="text" name="code5" id="code5" class="form-control text-center" required maxlength="1" pattern="\d">
                                 </div>
                                 <div class="form-group col">
-                                    <input type="text" name="code[]" id="code6" class="form-control text-center" required maxlength="1" pattern="\d">
+                                    <input type="text" name="code6" id="code6" class="form-control text-center" required maxlength="1" pattern="\d">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Validar</button>

@@ -8,14 +8,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertieController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisitController;
-use App\Mail\VisitNotification;
-use App\Models\Client;
-use App\Models\Visit;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +31,10 @@ use Illuminate\Support\Facades\Mail;
 //         dd(Mail::to($clientEmail)->send(new VisitNotification($visit)));
 //     }
 // });
+
+Route::post('/generate-code', 'EmailAuthController@generateCode')->name('generate.code');
+Route::post('/verify-code', [App\Http\Controllers\EmailAuthController::class, 'verifyCode'])->name('verify.code');
+
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -46,7 +45,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/dashboard');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 Route::get('/email/verify/resend', [EmailVerificationController::class, 'resend'])->name('verification.resend');
-
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

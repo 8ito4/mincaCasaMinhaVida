@@ -12,10 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Outras tarefas agendadas...
-
-        $schedule->command('send:birthday-wishes')
-                ->dailyAt('11:');
+        $schedule->command('send:birthday-wishes')->dailyAt('16:00');
     }
 
     /**

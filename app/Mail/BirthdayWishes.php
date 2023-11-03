@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Queue\SerializesModels;
 
 
@@ -64,4 +65,14 @@ class BirthdayWishes extends Mailable
                         'name' => $this->user->name,
                     ]);
     }
+
+    public function toMail($notifiable)
+{
+    return (new MailMessage)
+        ->line('Feliz aniversário, ' . $this->client->name . '!')
+        ->line('Desejamos a você um dia cheio de alegria e felicidade.')
+        ->line('Muito obrigado por fazer parte da nossa comunidade.')
+        ->action('Visite nosso site', url('/'))
+        ->line('Tenha um ótimo dia!');
+}
 }
